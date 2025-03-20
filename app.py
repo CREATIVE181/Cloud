@@ -1,5 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, send_from_directory
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PASSWORD = os.getenv("PASSWORD")
 
 app = Flask(__name__)
 app.secret_key = b'\x8f%)\x08H\\*x\x96\r\x9e\x17\xb7<\xa9\xae\n\xca\x02\x90\xa3)\x937E.\xc7\x13\xa0\xd0\x83\xb1\x94\x14\x0b>\x1a\xa8\xeaA \xb2C\x17\xfb\xc0\x8f@\x1cO'  # Замените на свой ключ
@@ -10,8 +15,7 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Простая авторизация
-PASSWORD = '12345'
+# Простая авторизаци
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
