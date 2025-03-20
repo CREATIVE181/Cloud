@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Folder</title>
+</head>
+<body>
+    <div class="container clearfix"> <!-- Добавляем clearfix для корректного отображения -->
+        <h2>Folder: {{ folder_name }}</h2>
+        <form method="post" enctype="multipart/form-data" action="{{ url_for('upload_file', folder_name=folder_name) }}">
+            <input type="file" name="file" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <ul class="file-list">
+            {% for file in files %}
+                <li>
+                    {{ file }}
+                    <a href="{{ url_for('download_file', folder_name=folder_name, filename=file) }}" class="download-button">Download</a>
+                    <button onclick="confirmDeleteFile('{{ folder_name }}', '{{ file }}')" class="delete-button">Delete</button>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('cloud') }}" class="back-button">Back</a>
+    </div>
+
+    <!-- Модальное окно для подтверждения удаления -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Чтобы удалить, решите пример: <span id="mathProblem"></span></p>
+            <input type="text" id="userAnswer" placeholder="Ваш ответ">
+            <button onclick="checkAnswer()">Подтвердить</button>
+        </div>
+    </div>
+
+    <script>
+        let currentFolderToDelete = null;
+        let currentFileToDelete = null;
+
+        // Функция для открытия модального окна
+        function confirmDeleteFile(folderName, fileName) {
+            currentFolderToDelete = folderName;
+            currentFileToDelete = fileName;
+            const mathProblem = generateMathProblem();
+            document.getElementById('mathProblem').textContent = mathProblem;
+            document.getElementById('deleteModal').style.display = 'block';
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+        }
+
+        // Функция для генерации случайного примера
+        function generateMathProblem() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            return `${num1} + ${num2}`;
+        }
+
+        // Функция для проверки ответа
+        function checkAnswer() {
+            const userAnswer = document.getElementById('userAnswer').value;
+            const mathProblem = document.getElementById('mathProblem').textContent;
+            const correctAnswer = eval(mathProblem);
+
+            if (parseInt(userAnswer) === correctAnswer) {
+                // Если ответ верный, отправляем форму удаления
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = `/delete/${currentFolderToDelete}/${currentFileToDelete}`;
+                document.body.appendChild(form);
+                form.submit();
+            } else {
+                alert('Неверный ответ. Попробуйте снова.');
+            }
+            closeModal();
+        }
+    </script>
+</body>
+</html>

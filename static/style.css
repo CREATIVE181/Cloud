@@ -1,0 +1,257 @@
+/* Основные стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 20px 55px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    color: #6200ea;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+form {
+    margin: 20px 0;
+}
+
+input[type="text"], input[type="password"], input[type="file"] {
+    width: 98%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="file"]:focus {
+    border-color: #6200ea;
+    outline: none;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #3700b3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Чтобы элементы растягивались в пределах строки */
+    padding: 12px;
+    margin: 8px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+}
+
+
+li:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    text-decoration: none;
+    color: #6200ea;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #3700b3;
+    text-decoration: underline;
+}
+
+.delete-button {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #24292e;
+}
+
+.modal-content input[type="text"] {
+    width: calc(100% - 24px); /* Учитываем padding */
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #24292e;
+    transition: border-color 0.3s ease;
+    text-align: center; /* Центрируем текст */
+}
+
+.modal-content input[type="text"]:focus {
+    border-color: #6200ea; /* Фиолетовый цвет */
+    outline: none;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6200ea; /* Фиолетовый цвет */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #3700b3; /* Темный фиолетовый */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Стили для кнопок Logout, Back и Download */
+.logout-button, .back-button, .download-button {
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none; /* Убираем подчеркивание */
+    display: inline-block;
+}
+
+.logout-button:hover, .back-button:hover, .download-button:hover {
+    transform: translateY(-2px);
+    text-decoration: none; /* Убираем подчеркивание при наведении */
+    color: white;
+}
+
+.logout-button:active, .back-button:active, .download-button:active {
+    transform: translateY(0);
+}
+
+/* Стили для кнопки Download */
+.download-button {
+    background-color: #4caf50; /* Зеленый цвет для Download */
+    margin-left: 30px; /* Отступ слева */
+}
+
+.download-button:hover {
+    background-color: #388e3c; /* Темный зеленый */
+}
+
+/* Стили для кнопок Back и Logout */
+.back-button, .logout-button {
+    background-color: #f44336; /* Красный цвет для Back и Logout */
+    float: left; /* Перемещаем кнопки вправо */
+}
+
+.back-button:hover, .logout-button:hover {
+    background-color: #d32f2f; /* Темный красный */
+}
+
+/* Очистка float */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
